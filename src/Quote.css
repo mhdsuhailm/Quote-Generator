@@ -23,16 +23,16 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%;
+      width: 50%;
       height: 5px;
       background-color:blue; /* Change this to your desired underline color */
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.5s ease}
+      transition: transform 2s ease}
     
     /* Apply the animation on hover */
     .underline-animation:hover::before {
-      transform: scaleX(1);
+      transform: scaleX(3);
     }
 
     /* loades classes  */

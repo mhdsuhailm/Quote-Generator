@@ -1,20 +1,67 @@
 import React, { useEffect, useState } from "react";
 import "./Quote.css";
+import axios from "axios";
 import Quotes from "randomquote-api";
 
 function Quote() {
   const [Quote, setQuote] = useState({});
   const [Loading, setLoading] = useState(false);
   useEffect(() => {
+    console.log("calling API");
     handleClick();
-  }, [Quote]);
- 
-  let handleClick =  ()=> {
+    // setLoading(true);
+    // axios({
+    //   method: "get",
+    //   url: "https://api.api-ninjas.com/v1/quotes?category=happiness",
+    //   headers: {
+    //     "X-Api-Key": "Q1PVoK1sHKLJHLoqssJ+Yw==mCaaxRANDRNcsdDD",
+    //   },
+    // })
+    //   .then(function (response) {
+    //     console.log(response.data[0]);
+    //     setLoading(false);
+    //     setQuote({
+    //       id: response.data[0].category,
+    //       author: response.data[0].author,
+    //       quote: response.data[0].quote,
+    //     });
+
+    
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }, []);
+
+  let handleClick = () => {
+    // setLoading(true);
+    // setQuote(Quotes.randomQuote());
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 1000);
+    console.log("calling API");
     setLoading(true);
-    setQuote(Quotes.randomQuote());
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    axios({
+      method: "get",
+      url: "https://api.api-ninjas.com/v1/quotes?category=happiness",
+      headers: {
+        "X-Api-Key": "Q1PVoK1sHKLJHLoqssJ+Yw==mCaaxRANDRNcsdDD",
+      },
+    })
+      .then(function (response) {
+        console.log(response.data);
+        setLoading(false);
+        setQuote({
+          id: response.data[0].category,
+          author: response.data[0].author,
+          quote: response.data[0].quote,
+        });
+
+    
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="app">
@@ -82,7 +129,6 @@ function Quote() {
   );
 }
 export default Quote;
-
 
 /*
 
